@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from pynput.mouse import Button, Controller
-from pynput import keyboard
+
 import time
 
 with open('sens.txt','r') as f:
@@ -19,7 +18,8 @@ current_value2 = tk.DoubleVar()
 
 current_value1.set(contents[0])
 current_value2.set(contents[1])
-
+def currentValueSender():
+    return current_value1.get
 def get_current_value1():
     return '{:.0f}'.format(current_value1.get())
 
@@ -48,7 +48,7 @@ def slider_changed2(event):
 slider1 = ttk.Scale(
     root,
     from_=0,
-    to=100,
+    to=10,
     orient='horizontal',
     command=slider_changed1,
     variable=current_value1
@@ -59,7 +59,7 @@ slider1.place(relx=.25, rely=.375, anchor="center", relwidth=.3)
 slider2 = ttk.Scale(
     root,
     from_=0,
-    to=100,
+    to=10,
     orient='horizontal',
     command=slider_changed2,
     variable=current_value2
@@ -68,5 +68,3 @@ slider2 = ttk.Scale(
 slider2.place(relx=.75, rely=.375, anchor="center", relwidth=.3)
 
 root.mainloop()
-
-

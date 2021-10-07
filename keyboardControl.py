@@ -1,14 +1,20 @@
 from pynput.mouse import Button, Controller
 from pynput import keyboard
-mouse = Controller()
 
+mouse = Controller()
 
 def on_press(key):
     try:
         if key.char == 'p':
-            mouse.scroll(0,-4)
+            with open('sens.txt','r') as f:
+                contents = f.readlines()
+            contents[0] = contents[0][:len(contents[0]) - 1]
+            mouse.scroll(0,-int(contents[0]))
         elif key.char == 'o':
-            mouse.scroll(0,4)
+            with open('sens.txt','r') as f:
+                contents = f.readlines()
+            contents[0] = contents[0][:len(contents[0]) - 1]
+            mouse.scroll(0,int(contents[1]))
         # print('alphanumeric key {0} pressed'.format(
         #     key.char))
     except AttributeError:
