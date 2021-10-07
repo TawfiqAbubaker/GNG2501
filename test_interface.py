@@ -1,17 +1,18 @@
 import tkinter as tk
 from tkinter import ttk
+from pynput.mouse import Button, Controller
+from pynput import keyboard
 import time
 
 with open('sens.txt','r') as f:
     contents = f.readlines()
-
 contents[0] = contents[0][:len(contents[0]) - 1]
 
 root = tk.Tk()
 root.geometry('600x250')
 root.minsize(width=300, height=150)
 root.resizable(True,True)
-root.title('Slider')
+root.title('Pedal Sensitivity Sliders')
 
 current_value1 = tk.DoubleVar()
 current_value2 = tk.DoubleVar()
