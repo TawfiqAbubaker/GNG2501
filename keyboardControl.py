@@ -3,6 +3,7 @@ from pynput import keyboard
 
 mouse = Controller()
 
+
 def on_press(key):
     try:
         if key.char == 'p':
