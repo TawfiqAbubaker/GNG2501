@@ -3,8 +3,34 @@ from tkinter import ttk
 import tkinter.font as font
 import ttkbootstrap as tttk
 
+import serial
+import time
+import serial.tools.list_ports
 
 import time
+
+def sendsValues():
+    ports = list(serial.tools.list_ports.comports())
+    port = ""
+    for p in ports:
+        if(p.description.find("Arduino") != -1):
+            port = p[0]
+            break
+
+    arduino = serial.Serial(port=port, baudrate=9600, timeout=.1)
+    def write_read(x):
+        arduino.write(bytes(x, 'utf-8'))
+        time.sleep(0.05)
+        # data = arduino.readline()
+        # return data
+    contents[1] = get_current_value2()
+    contents[0] = get_current_value1()
+    print(contents[0] + "\n" + contents[1])
+    write_read(contents[0]+contents[1])
+    # while True:
+    #     num = input("Enter a number: ") # Taking input from user
+    #     value = write_read(num)
+    #     print(value) #  
 
 with open('sens.txt','r') as f:
     contents = f.readlines()
@@ -53,10 +79,11 @@ value_label4['font'] = myFont
 value_label3['font'] = myFont
 
 value_label5 = ttk.Label(root, text="© FA17 ©")
-value_label5.place(relx=0.5, rely=.95, anchor="center")
+value_label5.place(relx=0.5, rely=.92, anchor="center")
 
 
 def slider_changed1(event):
+    sendsValues()
     value_label1.configure(text=get_current_value1())
     contents[0] = get_current_value1()
     with open('sens.txt','w') as f:
@@ -64,6 +91,7 @@ def slider_changed1(event):
 
 
 def slider_changed2(event):
+    sendsValues()
     value_label2.configure(text=get_current_value2())
     contents[1] = get_current_value2()
     with open('sens.txt','w') as f:
@@ -71,8 +99,8 @@ def slider_changed2(event):
 
 slider1 = ttk.Scale(
     root,
-    from_=0,
-    to=100,
+    from_=1,
+    to=9,
     orient='horizontal',
     command=slider_changed1,
     variable=current_value1
@@ -82,8 +110,8 @@ slider1.place(relx=.25, rely=.48, anchor="center", relwidth=.3)
 
 slider2 = ttk.Scale(
     root,
-    from_=0,
-    to=100,
+    from_=1,
+    to=9,
     orient='horizontal',
     command=slider_changed2,
     variable=current_value2,
@@ -92,3 +120,4 @@ slider2 = ttk.Scale(
 slider2.place(relx=.75, rely=.48, anchor="center", relwidth=.3)
 
 root.mainloop()
+
