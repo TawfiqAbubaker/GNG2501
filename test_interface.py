@@ -15,18 +15,19 @@ def sendsValues():
     for p in ports:
         if(p.description.find("Arduino") != -1):
             port = p[0]
+            arduino = serial.Serial(port=port, baudrate=9600, timeout=.1)
+            def write_read(x):
+                arduino.write(bytes(x, 'utf-8'))
+                time.sleep(0.05)
+                # data = arduino.readline()
+                # return data
+            contents[1] = get_current_value2()
+            contents[0] = get_current_value1()
+            print(contents[0] + "\n" + contents[1])
+            write_read(contents[0]+contents[1])
             break
 
-    arduino = serial.Serial(port=port, baudrate=9600, timeout=.1)
-    def write_read(x):
-        arduino.write(bytes(x, 'utf-8'))
-        time.sleep(0.05)
-        # data = arduino.readline()
-        # return data
-    contents[1] = get_current_value2()
-    contents[0] = get_current_value1()
-    print(contents[0] + "\n" + contents[1])
-    write_read(contents[0]+contents[1])
+    
     # while True:
     #     num = input("Enter a number: ") # Taking input from user
     #     value = write_read(num)
