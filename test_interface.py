@@ -13,6 +13,7 @@ def sendsValues():
     ports = list(serial.tools.list_ports.comports())
     port = ""
     for p in ports:
+        print(p.description)
         if(p.description.find("Arduino") != -1):
             port = p[0]
             arduino = serial.Serial(port=port, baudrate=9600, timeout=.1)
