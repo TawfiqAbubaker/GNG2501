@@ -98,7 +98,7 @@ def slider_changed1(event):
     value_label1.configure(text=get_current_value1())
     contents[0] = get_current_value1()
     with open('sens.txt','w') as f:
-        f.writelines([contents[0] + "\n", contents[1], contents[2]])
+        f.writelines([contents[0] + "\n", contents[1] + "\n", contents[2]])
 
 
 def slider_changed2(event):
@@ -106,7 +106,7 @@ def slider_changed2(event):
     value_label2.configure(text=get_current_value2())
     contents[1] = get_current_value2()
     with open('sens.txt','w') as f:
-        f.writelines([contents[0] + "\n", contents[1], contents[2]])
+        f.writelines([contents[0] + "\n", contents[1] + "\n", contents[2]])
 
 
 def slider_changed3(event):
@@ -114,7 +114,7 @@ def slider_changed3(event):
     value_label6.configure(text=get_current_value3())
     contents[2] = get_current_value3()
     with open('sens.txt','w') as f:
-        f.writelines([contents[0] + "\n", contents[1], contents[2]])
+        f.writelines([contents[0] + "\n", contents[1] + "\n", contents[2]])
 
 slider1 = ttk.Scale(
     root,
