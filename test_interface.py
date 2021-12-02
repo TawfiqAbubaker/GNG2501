@@ -41,7 +41,7 @@ contents[0] = contents[0][:len(contents[0]) - 1]
 root = tk.Tk()
 style = tttk.Style(theme="superhero")
 
-root.geometry('500x200')
+root.geometry('500x300')
 root.minsize(width=300, height=150)
 root.maxsize(width=600, height=300)
 root.resizable(True,True)
@@ -70,13 +70,13 @@ def get_current_value3():
 numberFonts = font.Font(family="Helvetica", size=17)
 
 value_label1 = ttk.Label(root, text=get_current_value1())
-value_label1.place(relx=0.25, rely=.64, anchor="center")
+value_label1.place(relx=0.25, rely=.5, anchor="center")
 value_label1['font'] = numberFonts
 value_label3 = ttk.Label(root, text="Up")
 value_label3.place(relx=0.25, rely=.3, anchor="center")
 
 value_label2 = ttk.Label(root, text=get_current_value2())
-value_label2.place(relx=0.75, rely=.64, anchor="center")
+value_label2.place(relx=0.75, rely=.5, anchor="center")
 value_label2['font'] = numberFonts
 value_label4 = ttk.Label(root, text="Down")
 value_label4.place(relx=0.75, rely=.3, anchor="center")
@@ -89,7 +89,7 @@ value_label5 = ttk.Label(root, text="© FA17 ©")
 value_label5.place(relx=0.5, rely=.92, anchor="center")
 
 value_label6 = ttk.Label(root, text=get_current_value3())
-value_label6.place(relx=.05, rely=.89, anchor="center")
+value_label6.place(relx=.25, rely=.8, anchor="center")
 value_label6['font'] = myFont
 
 
@@ -125,7 +125,7 @@ slider1 = ttk.Scale(
     variable=current_value1
 )
 
-slider1.place(relx=.25, rely=.48, anchor="center", relwidth=.3)
+slider1.place(relx=.25, rely=.4, anchor="center", relwidth=.3)
 
 slider2 = ttk.Scale(
     root,
@@ -136,7 +136,7 @@ slider2 = ttk.Scale(
     variable=current_value2,
 )
 
-slider2.place(relx=.75, rely=.48, anchor="center", relwidth=.3)
+slider2.place(relx=.75, rely=.4, anchor="center", relwidth=.3)
 
 slider3 = ttk.Scale(
     root,
@@ -147,7 +147,7 @@ slider3 = ttk.Scale(
     variable=current_value3,
 )
 
-slider3.place(relx=.25, rely=.89, anchor="center", relwidth=.3)
+slider3.place(relx=.25, rely=.7, anchor="center", relwidth=.3)
 
 def Simpletoggle():
     
@@ -163,7 +163,7 @@ toggle_button = ttk.Button(
     command=Simpletoggle,
 )
 
-toggle_button.place(relx=.75, rely=.89, anchor="center", relwidth=.3)
+toggle_button.place(relx=.75, rely=.7, anchor="center", relwidth=.3)
 
 root.mainloop()
 
