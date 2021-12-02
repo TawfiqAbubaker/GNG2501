@@ -49,9 +49,11 @@ root.title('Pedal Sensitivity Sliders')
 
 current_value1 = tk.DoubleVar()
 current_value2 = tk.DoubleVar()
+current_value3 = tk.DoubleVar()
 
 current_value1.set(contents[0])
 current_value2.set(contents[1])
+current_value2.set(contents[2])
 
 
 def get_current_value1():
@@ -59,6 +61,9 @@ def get_current_value1():
 
 def get_current_value2():
     return '{:.0f}'.format(current_value2.get())
+
+def get_current_value3():
+    return '{:.0f}'.format(current_value3.get())
 
 
 
@@ -83,13 +88,17 @@ value_label3['font'] = myFont
 value_label5 = ttk.Label(root, text="© FA17 ©")
 value_label5.place(relx=0.5, rely=.92, anchor="center")
 
+value_label6 = ttk.Label(root, text=get_current_value3())
+value_label6.place(relx=.05, rely=.89, anchor="center")
+value_label6['font'] = myFont
+
 
 def slider_changed1(event):
     sendsValues()
     value_label1.configure(text=get_current_value1())
     contents[0] = get_current_value1()
     with open('sens.txt','w') as f:
-        f.writelines([contents[0] + "\n", contents[1]])
+        f.writelines([contents[0] + "\n", contents[1], contents[2]])
 
 
 def slider_changed2(event):
@@ -97,7 +106,15 @@ def slider_changed2(event):
     value_label2.configure(text=get_current_value2())
     contents[1] = get_current_value2()
     with open('sens.txt','w') as f:
-        f.writelines([contents[0] + "\n", contents[1]])
+        f.writelines([contents[0] + "\n", contents[1], contents[2]])
+
+
+def slider_changed3(event):
+    sendsValues()
+    value_label6.configure(text=get_current_value3())
+    contents[2] = get_current_value3()
+    with open('sens.txt','w') as f:
+        f.writelines([contents[0] + "\n", contents[1], contents[2]])
 
 slider1 = ttk.Scale(
     root,
@@ -120,6 +137,33 @@ slider2 = ttk.Scale(
 )
 
 slider2.place(relx=.75, rely=.48, anchor="center", relwidth=.3)
+
+slider3 = ttk.Scale(
+    root,
+    from_=1,
+    to=9,
+    orient='horizontal',
+    command=slider_changed3,
+    variable=current_value3,
+)
+
+slider3.place(relx=.25, rely=.89, anchor="center", relwidth=.3)
+
+def Simpletoggle():
+    
+    if toggle_button.config('text')[-1] == 'ON':
+        toggle_button.config(text='OFF')
+    else:
+        toggle_button.config(text='ON')
+
+toggle_button = ttk.Button(
+    root,
+    text="OFF",
+    width=10,
+    command=Simpletoggle,
+)
+
+toggle_button.place(relx=.75, rely=.89, anchor="center", relwidth=.3)
 
 root.mainloop()
 
