@@ -30,12 +30,6 @@ def sendsValues():
             write_read(str(switch)+contents[0]+contents[1]+str(keyboard)+str(keyboardModeSensitivity))
             break
 
-    
-    # while True:
-    #     num = input("Enter a number: ") # Taking input from user
-    #     value = write_read(num)
-    #     print(value) #  
-
 with open('sens.txt','r') as f:
     contents = f.readlines()
 contents[0] = contents[0][:len(contents[0]) - 1]
